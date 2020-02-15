@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .chat{
+                width:50%;
+                border:2px solid grey;    
+                border-radius:5px;
+                margin:auto;
+
+            }
+            .chat_box{
+                margin:5px;
+                background-color: #F8F8F8;
+                border:5px solid white;
+                border-radius:5px;
+                padding:5px;
+            }
+            .chat_bubble_sent{
+                display:inline-block;
+                height:auto;
+                background-color: #CCFF99;
+                border-radius: 5px;
+                padding:5px;
+                border:2px solid #F8F8F8;
+                box-shadow: 2px 2px 2px #888888,2px 2px 2px #888888;
+                margin-top: 3px;
+                direction: ltr;    
+            }
+            .chat_bubble_received{
+                display:inline-block;
+                height:auto;
+                background-color: #FFFFCC;
+                border-radius: 5px;
+                padding:5px;
+                border:2px solid #F8F8F8;
+                box-shadow: 2px 2px 2px #888888,2px 2px 2px #888888;
+                margin-top: 3px;
+            }
+            .sent{
+                direction: rtl
+            }
+            .reply_field{
+                margin:auto;
+                width:90%;
+                border-radius: 5px;
+            }
+            .reply_section{
+                padding-top: 1%;
+                padding-bottom: 1%;
+            }
+            .input_entry_area{
+                width:90%;
+                margin:auto;
+            }
+        </style>
+    </head>    
+    <body>
+        <div class="chat">
+            <div class="chat_box" id="chat_box_id">
+                <div class='received'>
+                    <div class='chat_bubble_received'>Hi</div>
+                </div>
+                <div class="sent">
+                    <div class='chat_bubble_sent'>Hi</div>
+                </div>
+                <div class='received'>
+                    <div class='chat_bubble_received'>This is a text chat message</div>
+                </div>
+                <div class="sent">
+                    <div class='chat_bubble_sent'>This a text Reply to your message</div>
+                </div>
+                <div class="sent">
+                    <div class='chat_bubble_sent'>This another reply</div>
+                </div>
+            </div>
+            <div class="reply_section">
+                <div class="input_entry_area">
+                    <input type="text" class="reply_field" id="response" placeholder="Type message here"/>
+                    <input type="button" value="Send" onclick="send_message()"/>
+                </div>
+            </div>
+        </div>
+        <script>
+            /*code to add element to existing div*/
+            function add_element(referenceNode, newNode) {
+                referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+            }
+            /*function to attempt to send message*/
+            function send_message() {
+                var response_field = document.getElementById("response");
+                var response_text = response_field.value;
+                var response_template = "<div class='sent'> \n\
+                                        <div class='chat_bubble_sent'>$reply_txt\n\
+                                        </div>\n\
+                                    </div>";
+                if (response_text.length > 0) {
+                    var message_div = response_template.replace("$reply_txt", response_text);
+                    var chat_space = document.getElementById("chat_box_id");
+                    chat_space.innerHTML += message_div;
+                    response_field.value = null;
+                }
+            }
+        </script>
+    </body>
+</html>

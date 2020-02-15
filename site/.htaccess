@@ -1,0 +1,6 @@
+
+RewriteEngine On
+RewriteRule ^login startPage.html [QSA,L]
+RewriteRule ^chats chat_setup.html [QSA,L]
+RewriteRule ^chat_room chat.html [QSA,L]
+

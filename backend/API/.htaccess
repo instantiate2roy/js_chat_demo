@@ -1,0 +1,15 @@
+#Turn rewrite engine on
+RewriteEngine On
+
+#rewrite rule for user.php
+RewriteRule ^user/([0-9a-zA-Z]+) API_1_users.php?username=$1 [QSA,L]
+RewriteRule ^chat/([0-9a-zA-Z]+) API_1_chats.php?chat_owner=$1 [QSA,L]
+RewriteRule ^chatroom/([0-9a-zA-Z]+) API_1_chatroom.php?chatroom=$1 [QSA,L]
+RewriteRule ^messages/([0-9a-zA-Z]+) API_1_chatmessages.php?chatcode=$1 [QSA,L]
+RewriteRule ^user API_1_users.php [QSA,L]
+RewriteRule ^login API_1_login.php [QSA,L]
+RewriteRule ^chat API_1_chats.php [QSA,L]
+RewriteRule ^messages API_1_chatmessages.php [QSA,L]
+#NC makes the rule no case sensitve
+#QSA case sensitivity
+#L makes this the last rule that this specific condition will match
